@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#987341"/><stop offset=".45" stop-color="#f4dfad"/><stop offset="1" stop-color="#a78952"/></linearGradient></defs>
-  <rect width="128" height="128" rx="22" fill="#101310"/>
-  <rect x="7" y="7" width="114" height="114" rx="16" fill="none" stroke="#c9b07c" stroke-opacity=".55" stroke-width="1"/>
-  <text x="37" y="92" font-family="Georgia,serif" font-size="94" fill="url(#g)">A</text>
-  <text x="88" y="53" font-family="Arial,sans-serif" font-size="27" font-weight="300" fill="url(#g)">+</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="8" fill="#f5f3ed"/><text x="32" y="46" text-anchor="middle" font-family="Georgia,serif" font-size="44" fill="#262923">A</text></svg>

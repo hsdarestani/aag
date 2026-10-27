@@ -1,33 +1,37 @@
-# Ashkan Asadian — digitale Visitenkarte
+# Ashkan Asadian Ghahferokhi — digitale Visitenkarte
 
-Premium-One-Page-Profil für Ashkan Asadian Ghahferokhi, A+ Solution GmbH und A+ Esthetic.
+Reduziertes, deutschsprachiges Profil mit drei Bereichen, lokalem QR-Code und einer ohne JavaScript verfügbaren vCard. Keine externen Schriftarten, Tracker oder Laufzeit-Abhängigkeiten außer der bereits vorhandenen lokalen QR-Bibliothek (MIT).
 
-## Live schalten (GitHub Pages)
+## Cloudflare Pages
 
-1. Repository **Settings → Pages** öffnen.
-2. Unter **Build and deployment** als Source **Deploy from a branch** wählen.
-3. Branch **main**, Ordner **/(root)**, danach **Save**.
-4. Die Website ist nach erfolgreicher Veröffentlichung unter **https://hsdarestani.github.io/aag/** erreichbar.
-5. Auf einem iPhone und Android-Gerät prüfen: „Kontakt speichern“, Telefon, WhatsApp, „Profil teilen“, QR.
+Repository `hsdarestani/aag`, Produktionsbranch `main` verbinden.
 
-## NFC-Karten beschreiben
+- Framework: **None**
+- Build command: **python3 build.py**
+- Build output directory: **dist**
+- Root directory: leer / Repository-Wurzel
+- Optional: `SITE_URL` auf die endgültige HTTPS-Adresse setzen, insbesondere bei eigener Domain. Andernfalls verwendet der Build `CF_PAGES_URL` für Canonical und Open Graph URL.
 
-- **Empfehlung:** Vorher eine dauerhafte, eigene Domain/Subdomain festlegen (z. B. `ashkan.aplus-solution.de`), damit später kein Neubeschreiben aller NFC-Karten nötig wird.
-- In der NFC-App **NFC Tools**: **Write → Add a record → URL/URI**; vollständige HTTPS-URL eingeben, dann **Write** und Karte berühren.
-- Vorhandene NFC-Tags nur überschreiben, wenn sie nicht gesperrt und technisch kompatibel sind. Auf alten Karten gespeicherte andere Datensätze bei Bedarf vorher entfernen.
-- Die Karte benötigt kein dynamisches Profil auf dem NFC-Chip; sie speichert ausschließlich den permanenten Link.
+`dist` enthält ausschließlich die öffentlichen Dateien. `_headers` setzt Sicherheitsheader und den vCard-Dateityp. QR und Teilen verwenden die tatsächlich aufgerufene Adresse ohne Query/Fragment. Keine erfundene Produktionsdomain ist hinterlegt.
 
-## Personalisieren
+Nach dem ersten Deployment die tatsächliche URL, vCard, QR und Kontakte auf iPhone Safari und Android Chrome prüfen. Erst danach den permanenten Link auf NFC-Karten schreiben. Dieses Repository enthält keine Cloudflare-Zugangsdaten.
 
-- Personenname, Telefon und Links in `app.js` im Objekt `profile` ändern.
-- Das aktuelle Design verwendet bewusst ein grafisches Monogramm statt eines künstlich erzeugten Porträts. Ein echtes Foto kann später ergänzt werden.
-- Geschäftliche Kontaktkanäle stammen von der öffentlich zugänglichen Unternehmensseite. Vor Übergabe der NFC-Karten mit Ashkan abgleichen.
-- Die Buttons erzeugen die vCard direkt im Browser, keine Datenübertragung an einen eigenen Server.
-- QR-Code wird vollständig im Browser erzeugt (lokal gespeicherte MIT-Bibliothek unter `vendor/`), ohne externe QR-Dienste.
-- Fußzeilen-Links zu Impressum und Datenschutz führen aktuell zu A+ Solution. Vor produktiver Nutzung prüfen, ob die Angaben den Betreiber dieser persönlichen Profilseite rechtlich korrekt abdecken.
+## Verifizierte Daten und offene Abnahme
 
-## Technik
+Stand: 27.10.2026. Geschäftliche Telefonnummern, E-Mail und Anschrift stammen aus https://aplus-solution.de/impressum/ und https://aplus-solution.de/datenschutz/. Telefonnummern: +49 69 21000418 und +49 172 7779721; E-Mail: info@aplus-solution.de. Anschrift: Carl-Sonnenschein Straße 57, 65936 Frankfurt am Main. Die frühere Europa-Allee-Adresse wurde entfernt. Dies sind **Unternehmenskontakte**, keine behauptete persönliche Durchwahl. WhatsApp-Ziel aus dem bestehenden Repository beibehalten; Erreichbarkeit des Kontos nicht durch eine Nachricht geprüft.
 
-Reine HTML/CSS/JavaScript-Seite ohne Build-System oder Datenbank. GitHub Pages, Cloudflare Pages und andere statische Hosting-Dienste werden unterstützt.
+Name und Gründer-Titel aus dem Auftrag; Geschäftsführerrolle auch in beiden Unternehmensimpressen genannt. Kein verifiziertes Porträt und keine persönliche E-Mail verfügbar; deshalb keine erfundenen Angaben.
 
-Dateien: `index.html`, `styles.css`, `app.js`, `favicon.svg`.
+Rechtliches vor Veröffentlichung: § 5 DDG geprüft (https://www.gesetze-im-internet.de/ddg/__5.html). Vorhandener Betreiberbezug auf A+ Solution und Impressum-Link beibehalten. Die separate Datenschutzerklärung beschreibt die vorgesehene Cloudflare-Pages-Auslieferung und tatsächlich verwendete Seitenfunktionen. Betreiber muss bestätigen, dass A+ Solution diese persönliche Seite verantwortet und die Impressumsangaben sie abdecken. Cloudflare-Vertrag, tatsächliche Protokollierung/Aufbewahrung, internationale Übermittlungsgrundlage und etwaige zusätzliche Kontofunktionen müssen mit der finalen Hosting-Konfiguration abgeglichen werden. Keine abgeschlossene rechtliche Freigabe behauptet.
+
+## Entwickeln und prüfen
+
+```sh
+python3 build.py
+python3 tests/check.py
+node --check app.js
+```
+
+Kontaktdaten in `index.html`, `Ashkan-Asadian.vcf` und `datenschutz.html` konsistent halten. Der Build benötigt nur Python 3. Die vCard nutzt UTF-8, CRLF und Faltung bei maximal 75 Bytes pro Zeile.
+
+Browserprüfung in Chromium: Desktop sowie eingebettete Viewports 320×568, 390×844, 430×932. Kein horizontaler Überlauf; Kontakt-speichern-Button bei allen drei Breiten oberhalb 407px. QR-Dialog und Link-kopieren/Teilen-Fallback geprüft. Kein physisches iPhone/Android-Gerät verfügbar; native Kontakte-App und natives Share Sheet sind noch nicht gerätegeprüft.
