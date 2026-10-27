@@ -1,6 +1,6 @@
 # Ashkan Asadian Ghahferokhi — digitale Visitenkarte
 
-Reduziertes, deutschsprachiges Profil mit drei Bereichen, lokalem QR-Code und einer ohne JavaScript verfügbaren vCard. Keine externen Schriftarten, Tracker oder Laufzeit-Abhängigkeiten außer der bereits vorhandenen lokalen QR-Bibliothek (MIT).
+Deutschsprachiges Profil mit dunklem Editorial-Einstieg, warmer Papierfläche und kontrastierender Typografie mit drei Bereichen, lokalem QR-Code und einer ohne JavaScript verfügbaren vCard. Keine externen Schriftarten, Tracker oder Laufzeit-Abhängigkeiten außer der bereits vorhandenen lokalen QR-Bibliothek (MIT).
 
 ## Cloudflare Pages
 
@@ -34,4 +34,4 @@ node --check app.js
 
 Kontaktdaten in `index.html`, `Ashkan-Asadian.vcf` und `datenschutz.html` konsistent halten. Der Build benötigt nur Python 3. Die vCard nutzt UTF-8, CRLF und Faltung bei maximal 75 Bytes pro Zeile.
 
-Browserprüfung in Chromium: Desktop sowie eingebettete Viewports 320×568, 390×844, 430×932. Kein horizontaler Überlauf; Kontakt-speichern-Button bei allen drei Breiten oberhalb 407px. QR-Dialog und Link-kopieren/Teilen-Fallback geprüft. Kein physisches iPhone/Android-Gerät verfügbar; native Kontakte-App und natives Share Sheet sind noch nicht gerätegeprüft.
+Browserprüfung in Chromium: Desktop sowie eingebettete Viewports 320×568, 390×844, 430×932. Kein horizontaler Überlauf; Kontakt-speichern-Button bei allen drei Breiten oberhalb 385px. QR-Dialog und Link-kopieren/Teilen-Fallback geprüft. Kein physisches iPhone/Android-Gerät verfügbar; native Kontakte-App und natives Share Sheet sind noch nicht gerätegeprüft.
