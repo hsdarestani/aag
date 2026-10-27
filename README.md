@@ -23,7 +23,7 @@ Premium-One-Page-Profil für Ashkan Asadian Ghahferokhi, A+ Solution GmbH und A+
 - Das aktuelle Design verwendet bewusst ein grafisches Monogramm statt eines künstlich erzeugten Porträts. Ein echtes Foto kann später ergänzt werden.
 - Geschäftliche Kontaktkanäle stammen von der öffentlich zugänglichen Unternehmensseite. Vor Übergabe der NFC-Karten mit Ashkan abgleichen.
 - Die Buttons erzeugen die vCard direkt im Browser, keine Datenübertragung an einen eigenen Server.
-- QR-Code wird im Browser erzeugt (QR-Code-JS per CDN); bei Netzwerkfehlern bleibt Teilen/Kopieren verfügbar.
+- QR-Code wird vollständig im Browser erzeugt (lokal gespeicherte MIT-Bibliothek unter `vendor/`), ohne externe QR-Dienste.
 - Fußzeilen-Links zu Impressum und Datenschutz führen aktuell zu A+ Solution. Vor produktiver Nutzung prüfen, ob die Angaben den Betreiber dieser persönlichen Profilseite rechtlich korrekt abdecken.
 
 ## Technik
