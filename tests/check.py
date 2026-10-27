@@ -7,7 +7,7 @@ class Links(HTMLParser):
   a=dict(attrs)
   for key in ('href','src'):
    v=a.get(key,'')
-   if v.startswith('./'): assert (p/'dist'/(v[2:] or 'index.html')).is_file(),v
+   if v.startswith('./'): assert (p/'dist'/(urlparse(v).path[2:] or 'index.html')).is_file(),v
 for f in ('index.html','datenschutz.html'): Links().feed((p/'dist'/f).read_text())
 v=(p/'dist/Ashkan-Asadian.vcf').read_bytes()
 assert v.startswith(b'BEGIN:VCARD\r\n') and v.endswith(b'END:VCARD\r\n')
@@ -16,3 +16,10 @@ assert b'\n' not in v.replace(b'\r\n',b'')
 assert b'+496921000418' in v and b'info@aplus-solution.de' in v
 assert not (p/'dist/qa.html').exists()
 print('Local links, VCF encoding/folding/contact data, clean deployment output: PASS')
+
+s=(p/'dist/index.html').read_text()
+assert '<style id="profile-styles">' in s
+assert (p/'styles.css').read_text() in s
+assert not any(c in s for c in ('↗', '↓', '←', '→'))
+assert 'rel="stylesheet"' not in s
+print('Inline styles and arrow-free controls: PASS')

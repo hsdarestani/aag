@@ -1,5 +1,6 @@
 """Dependency-free Cloudflare Pages build: python3 build.py."""
 import os
+import re
 import shutil
 from pathlib import Path
 from urllib.parse import urlparse
@@ -11,6 +12,8 @@ out.mkdir()
 for name in ('index.html', 'datenschutz.html', 'styles.css', 'app.js', 'favicon.svg', 'Ashkan-Asadian.vcf', '_headers'):
     shutil.copy2(root / name, out / name)
 shutil.copytree(root / 'vendor', out / 'vendor')
+index = out / 'index.html'
+index.write_text(re.sub(r'<style id="profile-styles">.*?</style>', lambda _: '<style id="profile-styles">\n' + (root / 'styles.css').read_text() + '</style>', index.read_text(), flags=re.S))
 url = os.environ.get('SITE_URL') or os.environ.get('CF_PAGES_URL', '')
 if url:
     if urlparse(url).scheme != 'https' or not urlparse(url).netloc:
