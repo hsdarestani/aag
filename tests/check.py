@@ -9,7 +9,7 @@ class Links(HTMLParser):
    v=a.get(key,'')
    if v.startswith('./'): assert (p/'dist'/(urlparse(v).path[2:] or 'index.html')).is_file(),v
 for f in ('index.html','datenschutz.html'): Links().feed((p/'dist'/f).read_text())
-v=(p/'dist/Ashkan-Asadian.vcf').read_bytes()
+v=(p/'dist/Aplus-Solution.vcf').read_bytes()
 assert v.startswith(b'BEGIN:VCARD\r\n') and v.endswith(b'END:VCARD\r\n')
 assert all(len(line)<=75 for line in v.split(b'\r\n'))
 assert b'\n' not in v.replace(b'\r\n',b'')

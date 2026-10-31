@@ -52,8 +52,8 @@ async function shareProfile() {
   if (navigator.share) {
     try {
       await navigator.share({
-        title: 'Ashkan Asadian — Digitale Visitenkarte',
-        text: 'Ashkan Asadian | A+ Solution & A+ Esthetic',
+        title: 'A+ Solution GmbH — Digitale Visitenkarte',
+        text: 'A+ Solution GmbH & A+ Esthetic',
         url: profileLink()
       });
       return;
@@ -77,7 +77,7 @@ function showQR() {
       correctLevel: window.QRCode.CorrectLevel.M
     });
     const qrImage = qrTarget.querySelector('img');
-    if (qrImage) qrImage.alt = 'QR-Code zum Ashkan-Profil';
+    if (qrImage) qrImage.alt = 'QR-Code zum Unternehmensprofil';
   } else {
     qrTarget.textContent = 'QR-Code derzeit nicht verfügbar. Den Profil-Link kannst du unten kopieren.';
     qrTarget.style.padding = '12px';
