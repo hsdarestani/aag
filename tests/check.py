@@ -23,3 +23,11 @@ assert (p/'styles.css').read_text() in s
 assert not any(c in s for c in ('↗', '↓', '←', '→'))
 assert 'rel="stylesheet"' not in s
 print('Inline styles and arrow-free controls: PASS')
+
+# The original uploaded corporate logo must be included as a real image.
+assert (p/'dist/Artboard 1.png').is_file(), 'Artboard image missing from deployment'
+assert (p/'dist/Artboard 1.png').stat().st_size > 400_000
+assert 'src="./Artboard 1.png?v=5b36650e"' in s
+assert '.logo-artboard img{' in s
+assert 'background-image:url("./Artboard%201.png' not in s
+print('Uploaded brand art rendered as image and bundled: PASS')
