@@ -27,15 +27,17 @@ print('Inline styles and arrow-free controls: PASS')
 # The original uploaded corporate logo must be included as a real image.
 assert (p/'dist/Artboard 1.png').is_file(), 'Artboard image missing from deployment'
 assert (p/'dist/Artboard 1.png').stat().st_size > 400_000
-assert (p/'dist/artboard-logo.svg').is_file(), 'Cropped artboard SVG absent'
-assert (p/'dist/artboard-logo.svg').stat().st_size > 500_000
-assert 'src="./artboard-logo.svg?v=3"' in s
 assert '.logo-artboard .logo-cropped{' in s
-assert 'position:absolute' not in (p/'styles.css').read_text().split('.logo-artboard .logo-cropped{')[1].split('}')[0]
 assert 'background-image:url("./Artboard%201.png' not in s
 print('Uploaded brand art rendered as image and bundled: PASS')
 
-assert 'filter="url(#remove-dark)"' in (p/'dist/artboard-logo.svg').read_text()
-assert 'viewBox="154 666 735 500"' in (p/'dist/artboard-logo.svg').read_text()
-assert 'mix-blend-mode:screen' not in (p/'styles.css').read_text().split('.logo-artboard .logo-cropped{')[1].split('}')[0]
-print('Transparent badge artwork and correct crop: PASS')
+
+# Guard against huge overflow or SVG filtering. Exact Artboard PNG must be in the confined frame.
+assert 'src="./Artboard%201.png?v=5b36650e"' in s
+assert 'class="logo-cover"' in s
+assert 'src="./artboard-logo.svg' not in s
+css=(p/'styles.css').read_text()
+assert 'contain:paint' in css and 'overflow:hidden' in css
+assert '.logo-artboard .logo-cover{' in css
+assert 'width:150%' in css and 'transform:translate(-45%,-42%)' in css
+print('Artboard image constrained to logo frame: PASS')
