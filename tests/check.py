@@ -46,10 +46,9 @@ print('Artboard image constrained to logo frame: PASS')
 # Both must therefore have identical inline CSS; stale root CSS previously let the
 # 1080x1920 Artboard image expand over the whole hero.
 source=(p/'index.html').read_text()
-import re
-embedded=re.search(r'<style id="profile-styles">\\s*([\\s\\S]*?)\\s*</style>',source)
-assert embedded, 'Missing inline source CSS'
-assert embedded.group(1).strip() == (p/'styles.css').read_text().strip(), 'Source inline CSS and styles.css have diverged'
+assert '<style id="profile-styles">' in source and '</style>' in source
+embedded=source.split('<style id="profile-styles">',1)[1].split('</style>',1)[0]
+assert embedded.strip() == (p/'styles.css').read_text().strip(), 'Source inline CSS and styles.css have diverged'
 assert 'style="position:relative;overflow:hidden;min-width:0;isolation:isolate"' in source
 assert 'mix-blend-mode:screen' in source
 print('Root deployment and build both clip original Artboard to the logo badge: PASS')
