@@ -29,8 +29,13 @@ assert (p/'dist/Artboard 1.png').is_file(), 'Artboard image missing from deploym
 assert (p/'dist/Artboard 1.png').stat().st_size > 400_000
 assert (p/'dist/artboard-logo.svg').is_file(), 'Cropped artboard SVG absent'
 assert (p/'dist/artboard-logo.svg').stat().st_size > 500_000
-assert 'src="./artboard-logo.svg?v=2"' in s
+assert 'src="./artboard-logo.svg?v=3"' in s
 assert '.logo-artboard .logo-cropped{' in s
 assert 'position:absolute' not in (p/'styles.css').read_text().split('.logo-artboard .logo-cropped{')[1].split('}')[0]
 assert 'background-image:url("./Artboard%201.png' not in s
 print('Uploaded brand art rendered as image and bundled: PASS')
+
+assert 'filter="url(#remove-dark)"' in (p/'dist/artboard-logo.svg').read_text()
+assert 'viewBox="154 666 735 500"' in (p/'dist/artboard-logo.svg').read_text()
+assert 'mix-blend-mode:screen' not in (p/'styles.css').read_text().split('.logo-artboard .logo-cropped{')[1].split('}')[0]
+print('Transparent badge artwork and correct crop: PASS')
