@@ -41,3 +41,15 @@ assert 'contain:paint' in css and 'overflow:hidden' in css
 assert '.logo-artboard .logo-cover{' in css
 assert 'width:150%' in css and 'transform:translate(-45%,-42%)' in css
 print('Artboard image constrained to logo frame: PASS')
+
+# Cloudflare Pages can serve the repository-root index.html rather than the built dist/.
+# Both must therefore have identical inline CSS; stale root CSS previously let the
+# 1080x1920 Artboard image expand over the whole hero.
+source=(p/'index.html').read_text()
+import re
+embedded=re.search(r'<style id="profile-styles">\\s*([\\s\\S]*?)\\s*</style>',source)
+assert embedded, 'Missing inline source CSS'
+assert embedded.group(1).strip() == (p/'styles.css').read_text().strip(), 'Source inline CSS and styles.css have diverged'
+assert 'style="position:relative;overflow:hidden;min-width:0;isolation:isolate"' in source
+assert 'mix-blend-mode:screen' in source
+print('Root deployment and build both clip original Artboard to the logo badge: PASS')
