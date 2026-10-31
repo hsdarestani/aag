@@ -39,7 +39,7 @@ assert 'src="./artboard-logo.svg' not in s
 css=(p/'styles.css').read_text()
 assert 'contain:paint' in css and 'overflow:hidden' in css
 assert '.logo-artboard .logo-cover{' in css
-assert 'width:150%' in css and 'transform:translate(-45%,-42%)' in css
+assert 'width:150%' in css and 'transform:translate(-50%,-50%)' in css
 print('Artboard image constrained to logo frame: PASS')
 
 # Cloudflare Pages can serve the repository-root index.html rather than the built dist/.

@@ -22,7 +22,7 @@ a:focus-visible{outline:3px solid #af8844;outline-offset:4px}
 /* Display the uploaded Artboard file itself, not a CSS background. Crop its outer empty area only. */
 /* Source-of-truth: exact user-uploaded Artboard 1.png. Zoom its central emblem, never the header. */
 .logo-artboard{position:relative;min-width:0;overflow:hidden;isolation:isolate;background:#030a15;contain:paint}
-.logo-artboard .logo-cover{position:absolute;display:block;left:50%;top:50%;width:150%;height:auto;max-width:none;max-height:none;object-fit:cover;transform:translate(-45%,-42%);mix-blend-mode:screen;pointer-events:none;user-select:none}
+.logo-artboard .logo-cover{position:absolute;display:block;left:50%;top:50%;width:150%;height:auto;max-width:none;max-height:none;object-fit:cover;transform:translate(-50%,-50%);mix-blend-mode:screen;pointer-events:none;user-select:none}
 .hero-text{min-width:0}
 .hero-text .brand-line{margin:0 0 8px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:650;color:#cbb989}
 h1{font-size:clamp(27px,5.8vw,40px);line-height:1.1;letter-spacing:-.045em;margin:0;font-weight:650}
