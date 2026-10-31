@@ -27,7 +27,10 @@ print('Inline styles and arrow-free controls: PASS')
 # The original uploaded corporate logo must be included as a real image.
 assert (p/'dist/Artboard 1.png').is_file(), 'Artboard image missing from deployment'
 assert (p/'dist/Artboard 1.png').stat().st_size > 400_000
-assert 'src="./Artboard 1.png?v=5b36650e"' in s
-assert '.logo-artboard img{' in s
+assert (p/'dist/artboard-logo.svg').is_file(), 'Cropped artboard SVG absent'
+assert (p/'dist/artboard-logo.svg').stat().st_size > 500_000
+assert 'src="./artboard-logo.svg?v=2"' in s
+assert '.logo-artboard .logo-cropped{' in s
+assert 'position:absolute' not in (p/'styles.css').read_text().split('.logo-artboard .logo-cropped{')[1].split('}')[0]
 assert 'background-image:url("./Artboard%201.png' not in s
 print('Uploaded brand art rendered as image and bundled: PASS')

@@ -9,7 +9,7 @@ root = Path(__file__).resolve().parent
 out = root / 'dist'
 if out.exists(): shutil.rmtree(out)
 out.mkdir()
-for name in ('index.html', 'datenschutz.html', 'styles.css', 'app.js', 'favicon.svg', 'solution-symbol.svg', 'Artboard 1.png', 'Aplus-Solution.vcf', '_headers'):
+for name in ('index.html', 'datenschutz.html', 'styles.css', 'app.js', 'favicon.svg', 'solution-symbol.svg', 'Artboard 1.png', 'artboard-logo.svg', 'Aplus-Solution.vcf', '_headers'):
     shutil.copy2(root / name, out / name)
 shutil.copytree(root / 'vendor', out / 'vendor')
 index = out / 'index.html'

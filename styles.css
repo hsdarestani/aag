@@ -20,8 +20,8 @@ a:focus-visible{outline:3px solid #af8844;outline-offset:4px}
 .hero-core{position:relative;z-index:1;display:grid;grid-template-columns:132px 1fr;align-items:center;gap:22px;margin-top:27px}
 .logo-card{height:145px;border-radius:25px;border:1px solid rgba(216,182,115,.44);background:linear-gradient(145deg,rgba(236,213,165,.11),rgba(8,31,50,.24));display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(245,224,181,.15),0 13px 27px rgba(0,0,0,.15)}
 /* Display the uploaded Artboard file itself, not a CSS background. Crop its outer empty area only. */
-.logo-artboard{position:relative;min-width:0;overflow:hidden;isolation:isolate;background:#060e1b}
-.logo-artboard img{position:absolute;display:block;width:155%;max-width:none;height:auto;left:50%;top:50%;transform:translate(-50%,-50%) translate(7%,8%);object-fit:contain;pointer-events:none;user-select:none}
+.logo-artboard{position:relative;min-width:0;overflow:hidden;isolation:isolate;background:linear-gradient(145deg,#132b3c,#081e32)}
+.logo-artboard .logo-cropped{position:static;display:block;width:112px;max-width:95%;height:auto;max-height:112px;object-fit:contain;mix-blend-mode:screen;pointer-events:none;user-select:none}
 .hero-text{min-width:0}
 .hero-text .brand-line{margin:0 0 8px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:650;color:#cbb989}
 h1{font-size:clamp(27px,5.8vw,40px);line-height:1.1;letter-spacing:-.045em;margin:0;font-weight:650}
